@@ -61,7 +61,6 @@ Se creó una tabla nueva con los siguientes campos:
 
 `Consulta utilizada:`
 
-
 ```sql
 CREATE TABLE EmpresasFCT (
    idEmpresa SERIAL PRIMARY KEY,
@@ -72,3 +71,22 @@ CREATE TABLE EmpresasFCT (
 ```
 ![Captura desde 2025-11-24 20-38-25.png](bd-odoo/Captura%20desde%202025-11-24%2020-38-25.png)
 ---
+## Apartado 2 - Insertar registros
+Se insertaron 5 registros de ejemplo en `EmpresasFCT` utilizando `INSERT`.
+
+
+`Consulta utilizada:`
+
+
+```sql
+INSERT INTO EmpresasFCT (nombre, quiereAlumnos, numAlumnos, fechaContacto)
+VALUES
+('Empresa1', true, 3, '2025-01-10'),
+('Empresa2', false, 0, '2025-02-02'),
+('Empresa3', true, 2, '2025-01-28'),
+('Empresa4', true, 5, '2025-02-15'),
+('Empresa5', false, 1, '2025-01-05');
+```
+![7.png](bd-odoo/7.png)
+---
+
