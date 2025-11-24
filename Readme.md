@@ -153,4 +153,28 @@ ORDER BY am.invoice_date DESC;
 ```
 ![10.png](bd-odoo/10.png)
 ---
+### Apartado 6 - Empresas clientes con más de 2 facturas
+Se listaron las empresas clientes con más de dos facturas de venta confirmadas (`move_type='out_invoice'` y `state='posted'`), mostrando:
+- Nombre de la empresa
+- Número de facturas
+- Total con impuestos
+- Total sin impuestos
+
+
+`Consulta utilizada:`
+
+
+```sql
+SELECT rp.name AS nombre_empresa,
+      COUNT(am.id) AS numero_facturas,
+      SUM(am.amount_total) AS total_con_impuestos,
+      SUM(am.amount_untaxed) AS total_sin_impuestos
+FROM account_move am
+JOIN res_partner rp ON am.partner_id = rp.id
+WHERE am.move_type='out_invoice' AND am.state='posted'
+GROUP BY rp.name
+HAVING COUNT(am.id) > 2;
+```
+![11.png](bd-odoo/11.png)
+---
 
