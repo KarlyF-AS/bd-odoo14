@@ -89,4 +89,17 @@ VALUES
 ```
 ![7.png](bd-odoo/7.png)
 ---
+## Apartado 3 - Consultar tabla `EmpresasFCT`
+Se realizó un `SELECT` mostrando todos los datos de la tabla, ordenados por `fechaContacto` de más reciente a más antiguo.
+
+
+`Consulta utilizada:`
+
+
+```sql
+SELECT * FROM EmpresasFCT
+ORDER BY fechaContacto DESC;
+```
+![8 part_3.png](bd-odoo/8%20part_3.png)
+---
 
