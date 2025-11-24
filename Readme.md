@@ -102,4 +102,29 @@ ORDER BY fechaContacto DESC;
 ```
 ![8 part_3.png](bd-odoo/8%20part_3.png)
 ---
+## Apartado 4 - Listado de contactos
+Se listaron todos los contactos de Odoo que **no son empresas**, excluyendo ciudad `Tracy` con código postal `95304`, mostrando:
+- Nombre del contacto
+- Ciudad
+- Código postal
+- Nombre comercial de la empresa 
+Ordenados alfabéticamente por el nombre comercial.
+
+
+`Consulta utilizada:`
+
+
+```sql
+SELECT name AS nombre,
+      street2 AS ciudad,
+      zip AS codigo_postal,
+      commercial_partner_id AS nombre_comercial_empresa
+FROM res_partner
+WHERE is_company = false
+ AND NOT (street2='Tracy' AND zip='95304')
+ORDER BY commercial_partner_id;
+```
+![9.1.png](bd-odoo/9.1.png)
+![9.png](bd-odoo/9.png)
+---
 
