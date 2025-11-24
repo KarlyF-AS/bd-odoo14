@@ -32,7 +32,7 @@ volumes:
 ```
 --- 
 ## Pasos básicos previos
-Antes de pulsar **"Create database"**, seleccionamos la opción **"Demo data"** para tener datos de ejemplo en Odoo.  
+Antes de pulsar **"Create database"**, seleccionamos la opción **"Demo data"** para tener datos de ejemplo en Odoo.
 ![1.png](bd-odoo/1.png)
 
 Antes de ejecutar cualquier consulta SQL, es recomendable hacer un backup de la base de datos. Esto nos permite restaurarla si ocurre algún error.  
@@ -44,6 +44,7 @@ Para asegurarnos de que todo está correcto, vamos a la carpeta del proyecto (do
 ![5.png](bd-odoo/5.png)
 
 Una vez que la base de datos está configurada y el backup verificado, podemos comenzar con los ejercicios prácticos de la tarea.
+
 --- 
 ## Apartado 0: Ingresar a la bd desde la terminal:
 Ingresar a la bd
