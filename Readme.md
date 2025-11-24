@@ -177,4 +177,41 @@ HAVING COUNT(am.id) > 2;
 ```
 ![11.png](bd-odoo/11.png)
 ---
+### Apartado 7 - Actualización de correos
+Se actualizaron los correos electrónicos de los contactos cuyo dominio era `@bilbao.example.com`, cambiándolos por `@bilbao.bizkaia.neus`. 
+Se verificó previamente la lista de emails afectados antes de aplicar el cambio.
+
+
+`Consulta utilizada:`
+
+
+
+
+`Listar emails`
+```sql
+SELECT name, email
+FROM res_partner
+WHERE email LIKE '%@bilbao.example.com';
+```
+1. ![12.1.png](bd-odoo/12.1.png)
+
+
+`Actualizar emails:`
+```sql
+UPDATE res_partner
+SET email = regexp_replace(email, '@bilbao\.example\.com$', '@bilbao.bizkaia.neus')
+WHERE email LIKE '%@bilbao.example.com';
+```
+2. ![12.2.png](bd-odoo/12.2.png)
+
+
+`Verificación de la actualización:`
+```sql
+SELECT name, email
+FROM res_partner
+WHERE email LIKE '%@bilbao.bizkaia.neus';
+```
+3. ![12.3.png](bd-odoo/12.3.png)
+---
+`Fin`
 
