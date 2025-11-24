@@ -127,4 +127,30 @@ ORDER BY commercial_partner_id;
 ![9.1.png](bd-odoo/9.1.png)
 ![9.png](bd-odoo/9.png)
 ---
+## Apartado 5 - Empresas proveedoras con reembolsos
+Se obtuvieron las empresas proveedoras que han emitido algún reembolso (`move_type='in_refund'`), mostrando:
+- Nombre de la empresa
+- Número de factura
+- Fecha de factura
+- Total con impuestos
+- Total sin impuestos 
+Ordenadas por fecha, de más reciente a más antigua.
+
+
+`Consulta utilizada:`
+
+
+```sql
+SELECT rp.name AS nombre_empresa,
+      am.name AS numero_factura,
+      am.invoice_date AS fecha_factura,
+      am.amount_total AS total_con_impuestos,
+      am.amount_untaxed AS total_sin_impuestos
+FROM account_move am
+JOIN res_partner rp ON am.partner_id = rp.id
+WHERE am.move_type='in_refund'
+ORDER BY am.invoice_date DESC;
+```
+![10.png](bd-odoo/10.png)
+---
 
