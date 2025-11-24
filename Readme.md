@@ -50,3 +50,25 @@ Ingresar a la bd
 
 ![Captura desde 2025-11-24 20-25-58.png](bd-odoo/Captura%20desde%202025-11-24%2020-25-58.png)
 --- 
+## Apartado 1: Crear tabla `EmpresasFCT`
+Se creó una tabla nueva con los siguientes campos:
+- `idEmpresa`: autonumérico, clave primaria
+- `nombre`: texto (máx. 40 caracteres)
+- `quiereAlumnos`: booleano
+- `numAlumnos`: número entero
+- `fechaContacto`: tipo fecha
+
+
+`Consulta utilizada:`
+
+
+```sql
+CREATE TABLE EmpresasFCT (
+   idEmpresa SERIAL PRIMARY KEY,
+   nombre VARCHAR(40),
+   quiereAlumnos BOOLEAN,
+   numAlumnos INTEGER,
+   fechaContacto DATE);
+```
+![Captura desde 2025-11-24 20-38-25.png](bd-odoo/Captura%20desde%202025-11-24%2020-38-25.png)
+---
