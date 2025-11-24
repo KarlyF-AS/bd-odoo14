@@ -1,4 +1,4 @@
-# DB-ODOO
+# BD-ODOO
 Para esta tarea utilicé la base de datos de la Tarea 12, ya que el archivo docker-compose.yml ya estaba configurado y listo.
 Para la creación de las tablas adicionales y la ejecución de las consultas SQL utilicé PostgreSQL, considerándolo la herramienta más adecuada para esta práctica.
 ```yaml
@@ -31,7 +31,7 @@ volumes:
   db_data:
 ```
 --- 
-## Pasos básicos previos
+### _Pasos básicos previos_
    Antes de pulsar **"Create database"**, seleccionamos la opción **"Demo data"** para tener datos de ejemplo en Odoo.  
    ![1.png](bd-odoo/1.png)
 
@@ -45,19 +45,18 @@ volumes:
 Una vez que la base de datos está configurada y el backup verificado, podemos comenzar con los ejercicios prácticos de la tarea.
 
 --- 
-## Apartado 0: Ingresar a la bd desde la terminal:
+### _Apartado 0: Ingresar a la bd desde la terminal:_
 Ingresar a la bd
 
 ![Captura desde 2025-11-24 20-25-58.png](bd-odoo/Captura%20desde%202025-11-24%2020-25-58.png)
 --- 
-## Apartado 1: Crear tabla `EmpresasFCT`
+### _Apartado 1: Crear tabla `EmpresasFCT`_
 Se creó una tabla nueva con los siguientes campos:
 - `idEmpresa`: autonumérico, clave primaria
 - `nombre`: texto (máx. 40 caracteres)
 - `quiereAlumnos`: booleano
 - `numAlumnos`: número entero
 - `fechaContacto`: tipo fecha
-
 
 `Consulta utilizada:`
 
@@ -71,12 +70,10 @@ CREATE TABLE EmpresasFCT (
 ```
 ![Captura desde 2025-11-24 20-38-25.png](bd-odoo/Captura%20desde%202025-11-24%2020-38-25.png)
 ---
-## Apartado 2 - Insertar registros
+### _Apartado 2 - Insertar registros_
 Se insertaron 5 registros de ejemplo en `EmpresasFCT` utilizando `INSERT`.
 
-
 `Consulta utilizada:`
-
 
 ```sql
 INSERT INTO EmpresasFCT (nombre, quiereAlumnos, numAlumnos, fechaContacto)
@@ -89,12 +86,10 @@ VALUES
 ```
 ![7.png](bd-odoo/7.png)
 ---
-## Apartado 3 - Consultar tabla `EmpresasFCT`
+### _Apartado 3 - Consultar tabla `EmpresasFCT`_
 Se realizó un `SELECT` mostrando todos los datos de la tabla, ordenados por `fechaContacto` de más reciente a más antiguo.
 
-
 `Consulta utilizada:`
-
 
 ```sql
 SELECT * FROM EmpresasFCT
@@ -102,7 +97,7 @@ ORDER BY fechaContacto DESC;
 ```
 ![8 part_3.png](bd-odoo/8%20part_3.png)
 ---
-## Apartado 4 - Listado de contactos
+### _Apartado 4 - Listado de contactos_
 Se listaron todos los contactos de Odoo que **no son empresas**, excluyendo ciudad `Tracy` con código postal `95304`, mostrando:
 - Nombre del contacto
 - Ciudad
@@ -110,9 +105,7 @@ Se listaron todos los contactos de Odoo que **no son empresas**, excluyendo ciud
 - Nombre comercial de la empresa 
 Ordenados alfabéticamente por el nombre comercial.
 
-
 `Consulta utilizada:`
-
 
 ```sql
 SELECT name AS nombre,
@@ -127,7 +120,7 @@ ORDER BY commercial_partner_id;
 ![9.1.png](bd-odoo/9.1.png)
 ![9.png](bd-odoo/9.png)
 ---
-## Apartado 5 - Empresas proveedoras con reembolsos
+### _Apartado 5 - Empresas proveedoras con reembolsos_
 Se obtuvieron las empresas proveedoras que han emitido algún reembolso (`move_type='in_refund'`), mostrando:
 - Nombre de la empresa
 - Número de factura
@@ -136,9 +129,7 @@ Se obtuvieron las empresas proveedoras que han emitido algún reembolso (`move_t
 - Total sin impuestos 
 Ordenadas por fecha, de más reciente a más antigua.
 
-
 `Consulta utilizada:`
-
 
 ```sql
 SELECT rp.name AS nombre_empresa,
@@ -153,17 +144,14 @@ ORDER BY am.invoice_date DESC;
 ```
 ![10.png](bd-odoo/10.png)
 ---
-### Apartado 6 - Empresas clientes con más de 2 facturas
+### _Apartado 6 - Empresas clientes con más de 2 facturas_
 Se listaron las empresas clientes con más de dos facturas de venta confirmadas (`move_type='out_invoice'` y `state='posted'`), mostrando:
 - Nombre de la empresa
 - Número de facturas
 - Total con impuestos
 - Total sin impuestos
 
-
 `Consulta utilizada:`
-
-
 ```sql
 SELECT rp.name AS nombre_empresa,
       COUNT(am.id) AS numero_facturas,
@@ -177,15 +165,11 @@ HAVING COUNT(am.id) > 2;
 ```
 ![11.png](bd-odoo/11.png)
 ---
-### Apartado 7 - Actualización de correos
+### _Apartado 7 - Actualización de correos_
 Se actualizaron los correos electrónicos de los contactos cuyo dominio era `@bilbao.example.com`, cambiándolos por `@bilbao.bizkaia.neus`. 
 Se verificó previamente la lista de emails afectados antes de aplicar el cambio.
 
-
 `Consulta utilizada:`
-
-
-
 
 `Listar emails`
 ```sql
@@ -195,7 +179,6 @@ WHERE email LIKE '%@bilbao.example.com';
 ```
 1. ![12.1.png](bd-odoo/12.1.png)
 
-
 `Actualizar emails:`
 ```sql
 UPDATE res_partner
@@ -203,7 +186,6 @@ SET email = regexp_replace(email, '@bilbao\.example\.com$', '@bilbao.bizkaia.neu
 WHERE email LIKE '%@bilbao.example.com';
 ```
 2. ![12.2.png](bd-odoo/12.2.png)
-
 
 `Verificación de la actualización:`
 ```sql
@@ -213,5 +195,4 @@ WHERE email LIKE '%@bilbao.bizkaia.neus';
 ```
 3. ![12.3.png](bd-odoo/12.3.png)
 ---
-`Fin`
-
+# `Fin`
